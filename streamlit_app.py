@@ -1,1 +1,19 @@
-import streamlit as st\nimport numpy as np\nimport pandas as pd\n\n# Function to simulate data prediction\ndef predict_weather(temp, humidity, precipitation):\n    features = {\n        'Temperature': temp,\n        'Humidity': humidity,\n        'Precipitation': precipitation\n    }\n    # Just a dummy model for simulation purpose\n    prediction = np.random.rand() * 100  # Predicting temperature in Fahrenheit\n    return features, prediction\n\ndef main():\n    st.title('Weather Prediction App')\n\n    st.sidebar.header('User Input')\n    temp = st.sidebar.slider('Temperature (°F)', min_value=32, max_value=100, value=70)\n    humidity = st.sidebar.slider('Humidity (%)', min_value=0, max_value=100, value=50)\n    precipitation = st.sidebar.slider('Precipitation (inches)', min_value=0.0, max_value=5.0, value=1.0)\n\n    st.sidebar.subheader('Model Features')\n    st.sidebar.write(f'Temperature: {temp} °F')\n    st.sidebar.write(f'Humidity: {humidity} %')\n    st.sidebar.write(f'Precipitation: {precipitation} inches')\n\n    features, prediction = predict_weather(temp, humidity, precipitation)\n\n    st.subheader('Predicted Weather')\n    st.write(f'The predicted weather condition is as follows:')\n    st.write(features)\n    st.write(f'Predicted Temperature: {prediction:.2f} °F')\n\nif __name__ == '__main__':\n    main()
+import streamlit as st
+import numpy as np
+import pandas as pd
+
+st.title('Weather Prediction App')
+
+st.sidebar.header('User Input')
+temp = st.sidebar.slider('Temperature (F)', min_value=32, max_value=100, value=70)
+humidity = st.sidebar.slider('Humidity (%)', min_value=0, max_value=100, value=50)
+precipitation = st.sidebar.slider('Precipitation (inches)', min_value=0.0, max_value=5.0, value=1.0)
+
+st.subheader('Your Input Values')
+st.write(f'Temperature: {temp} F')
+st.write(f'Humidity: {humidity}%')
+st.write(f'Precipitation: {precipitation} inches')
+
+st.subheader('Prediction')
+prediction = np.random.rand() * 100
+st.write(f'Predicted Temperature: {prediction:.2f} F')
